@@ -1,4 +1,4 @@
-#Diary
+# Dia.ry
 ## Description:
 A web application for storing all relevant information about the current day.<br>
 You can add text, images, rate your feelings and we add information about the day,<br>
