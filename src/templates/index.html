@@ -10,15 +10,24 @@
     <link href="css/style.css" rel="stylesheet" />
     <script type="text/javascript" src="js/script.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
 </head>
 <body>
 {% include "imports/header.html" %}
-<div class="container">
+<div class="container index">
     <div class="row">
-        <div class="one column">One</div>
-        <div class="eleven columns">Eleven</div>
+        <div class="twelve columns light-bg">
+            <div class="four columns">
+                <img src="img/profile/img.jpg" class="profile-img"/>
+            </div>
+            <div class="eight columns">
+                <h1>hello michaela!</h1>
+                <h3 class="smaller">how are you doing today? random lorem ipsum text inserted here</h3>
+            </div>
+        </div>
     </div>
 </div>
+{% include "imports/stats.html" %}
+
 </body>
 </html>

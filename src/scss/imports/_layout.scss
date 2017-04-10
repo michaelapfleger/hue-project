@@ -1,4 +1,54 @@
 body {
   background-color: $background-color;
   font-family: $font-family;
+  font-size: 16px;
+
+  /* HEADLINES */
+  h1,h2,h3,h4,h5,h6 {
+    font-family: $headline;
+  }
+  h1 {
+    color: $pink;
+  }
+
+  .smaller {
+    font-size: 1.2em;
+  }
+
+  /* AUTO MARGIN PADDING */
+  .mt30 {
+    margin-top: 30px;
+  }
+
+
+
+
+
+  .light-bg {
+    background: $light-gray;
+  }
+
+  .container {
+    &.index {
+      .eight.columns {
+        margin-top: 4%;
+      }
+    }
+
+    .headline-background {
+      width: 100%;
+      background-color: $darker-gray;
+      text-align: center;
+      color: white;
+      font-size: 1.7em;
+      padding: 8px 0 8px 0;
+    }
+
+    .columns {
+      img.profile-img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
 }
