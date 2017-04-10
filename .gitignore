@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+thumbs.db
+node_modules
+npm-debug.log
+build
+firebase.config.js
