@@ -1,0 +1,64 @@
+header {
+  background-color: $light-black;
+  height: 65px;
+
+  div {
+    height: 100%;
+
+    &.wrapper {
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 65px;
+
+    li {
+      display: inline-block;
+      float: left;
+      margin-right: 1px;
+      height: 100%;
+      margin-bottom: 0;
+      a {
+        display: block;
+        min-width: 140px;
+        height: 57px;
+        padding-top: 8px;
+        text-align: center;
+        line-height: 50px;
+        color: #fff;
+        text-decoration: none;
+
+        .material-icons {
+          font-size: 2em;
+          line-height: 50px;
+        }
+      }
+      &:hover a {
+        background: $pink;
+        color: $light-black;
+      }
+
+    }
+  }
+
+  .show-menu {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0 8px 0;
+    display: none;
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+  input[type=checkbox]:checked ~ #menu {
+    display: block;
+  }
+}

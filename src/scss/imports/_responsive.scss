@@ -1,0 +1,27 @@
+
+/* menu */
+@media screen and (max-width : 760px){
+  header {
+    div.wrapper {
+      width: 100%;
+      .show-menu {
+        display: block;
+      }
+      ul {
+        position: static;
+        display: none;
+        li {
+          margin-bottom: 1px;
+          width: 100%;
+          background-color: $pink;
+        }
+        a {
+          width: 100%;
+          &:active {
+            background: $light-black;
+          }
+        }
+      }
+    }
+  }
+}
