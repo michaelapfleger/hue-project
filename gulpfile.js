@@ -11,7 +11,7 @@ var named = require('vinyl-named');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var imagemin = require('gulp-imagemin');
-let nunjucksRender = require('gulp-nunjucks-render');
+var nunjucksRender = require('gulp-nunjucks-render');
 // var jimp = require('gulp-jimp');
 
 
