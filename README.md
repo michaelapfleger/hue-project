@@ -5,3 +5,9 @@ You can add text, images, rate your feelings and we add information about the da
 like the most popular instagram image, youtube video, weather information and geolocation etc.
 ## Team:
 Michaela Pfleger, S1610629014
+
+## Technologies used
+* Vue.js
+* Vue Router
+* Vue Form Builder
+* SASS/SCSS
