@@ -3,8 +3,12 @@ import VueRouter from "vue-router";
 import Home from "./home.vue";
 import Today from "./today.vue";
 import Diary from "./diary.vue";
+import About from "./about.vue";
 import App from "./app.vue";
+import VueFormGenerator from "vue-form-generator";
+import axios from "axios";
 
+Vue.use(VueFormGenerator);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -17,6 +21,9 @@ const router = new VueRouter({
     }, {
         path: '/diary',
         component: Diary
+    }, {
+        path: '/about',
+        component: About
     }]
 });
 
@@ -26,6 +33,9 @@ var app = new Vue({
     components:{
         App
     },
-    template: '<app></app>'
+    template: '<app></app>',
+    mounted: function () {
+        console.log("mounted");
+    },
 
 });

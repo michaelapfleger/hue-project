@@ -39,13 +39,23 @@ header {
           line-height: 50px;
         }
       }
-      &:hover a, .router-link-active {
+      &:hover a{
         background: $pink;
         color: $light-black;
       }
 
-
+      .router-link-active {
+        background: $pink;
+        color: $light-black;
+      }
+      &.icon-border {
+        .router-link-active {
+          color: $pink;
+          background: $light-black;
+        }
+      }
     }
+
   }
 
   .show-menu {
