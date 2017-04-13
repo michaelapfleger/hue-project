@@ -11,7 +11,8 @@ var named = require('vinyl-named');
 var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var imagemin = require('gulp-imagemin');
-var jimp = require('gulp-jimp');
+let nunjucksRender = require('gulp-nunjucks-render');
+// var jimp = require('gulp-jimp');
 
 
 gulp.task('css', function () {
@@ -32,7 +33,7 @@ gulp.task('img', function () {
 
 gulp.task('profile-img', function () {
     gulp.src('src/img/profile/**/*')
-        // .pipe(jimp({ greyscale: true }))
+    // .pipe(jimp({ greyscale: true }))
         .pipe(gulp.dest('build/img/profile'));
 });
 
@@ -59,18 +60,20 @@ gulp.task('js', function () {
 gulp.task('templates', function () {
     gulp.src('src/templates/*.html')
         .pipe(plumber())
-        .pipe(nunjucks.compile({path: 'src/templates'}))
+        .pipe(nunjucksRender({
+            path: 'src/templates'
+        }))
         .pipe(gulp.dest('build'));
 });
 
 gulp.task('serve', function () {
-   browserSync.init({
-       server: {
-           baseDir: './build'
-       },
-       files: './build/**/*',
-       reloadDebounce: 500
-   })
+    browserSync.init({
+        server: {
+            baseDir: './build'
+        },
+        files: './build/**/*',
+        reloadDebounce: 500
+    })
 });
 
 gulp.task('watch',function () {
