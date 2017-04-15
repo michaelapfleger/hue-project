@@ -1,10 +1,43 @@
 .weather {
-  .temp {
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 50px;
-    padding-left: 10px;
-    height: 50px;
-    position: absolute;
+  margin:0;
+  background: $light-black;
+  color: $cararra;
+  .weather-box {
+
+    .weather-desc {
+      text-align: center;
+    }
+    .weather-headline-wrapper {
+      text-align: center;
+      padding-top: 20px;
+      h2.weather-headline {
+        font-size: 1.5em;
+        display: inline-block;
+      }
+    }
+    .weather-icon-wrapper {
+      width: 50%;
+      margin: 0 auto;
+      .description {
+        font-size: 20px;
+        display: block;
+        text-align: center;
+      }
+      .temp {
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 50px;
+        padding-left: 10px;
+        height: 50px;
+        position: absolute;
+      }
+    }
+    .weather-infos {
+      text-align: center;
+      background: $light-gray;
+      color: $light-black;
+      padding-top: 20px;
+      margin-top: 20px;
+    }
   }
 }
