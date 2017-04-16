@@ -1,43 +1,135 @@
-.weather {
-  margin:0;
-  background: $light-black;
-  color: $cararra;
-  .weather-box {
+.twelve.columns.infos {
+  background: $white-smoke;
+  .weather {
+    margin: 0;
+    background: $light-black;
+    color: $cararra;
+    .weather-box {
 
-    .weather-desc {
-      text-align: center;
-    }
-    .weather-headline-wrapper {
-      text-align: center;
-      padding-top: 20px;
-      h2.weather-headline {
-        font-size: 1.5em;
-        display: inline-block;
-      }
-    }
-    .weather-icon-wrapper {
-      width: 50%;
-      margin: 0 auto;
-      .description {
-        font-size: 20px;
-        display: block;
+      .weather-desc {
         text-align: center;
       }
-      .temp {
-        font-weight: bold;
-        font-size: 30px;
-        line-height: 50px;
-        padding-left: 10px;
-        height: 50px;
-        position: absolute;
+      .weather-headline-wrapper {
+        text-align: center;
+        padding-top: 20px;
+        h2.weather-headline {
+          font-size: 1.5em;
+          display: inline-block;
+        }
+      }
+      .weather-icon-wrapper {
+        width: 50%;
+        margin: 0 auto;
+        .description {
+          font-size: 20px;
+          display: block;
+          text-align: center;
+        }
+        .temp {
+          font-weight: bold;
+          font-size: 30px;
+          line-height: 50px;
+          padding-left: 10px;
+          height: 50px;
+          position: absolute;
+        }
+      }
+      .weather-infos {
+        text-align: center;
+        background: $light-gray;
+        color: $light-black;
+        padding-top: 20px;
+        margin-top: 20px;
       }
     }
-    .weather-infos {
-      text-align: center;
-      background: $light-gray;
-      color: $light-black;
-      padding-top: 20px;
-      margin-top: 20px;
+  }
+  .four.columns.space {
+    min-height: 343px;
+  }
+  .space {
+    background: $rosa;
+    margin: 0;
+    color: $light-gray;
+    text-align: center;
+    .space-box {
+      h3, .material-icons {
+        background: $light-gray;
+        color: $light-black;
+        padding: 10px 10px 0 10px;
+        display: block;
+        font-size: 1.4em;
+      }
+      .material-icons, .wi {
+        padding: 0 10px 10px 10px;
+        color: $rosa;
+        font-size: 40px;
+      }
+      .wi {
+        color: $light-gray;
+      }
+      #space-humans {
+        padding-top: 15px;
+        list-style-type: none;
+        margin-bottom: 15px;
+      }
     }
+  }
+  .news {
+    margin-left: 0;
+    .news-box {
+      padding: 10px 15px 15px 15px;
+      min-height: 300px;
+      position: relative;
+      button {
+        margin-top: 10px;
+      }
+      .logo-wrapper {
+        width: 100%;
+        text-align: right;
+        margin-bottom: 0;
+        margin-top: 0;
+        position: absolute;
+        right: 20px;
+        .author {
+          font-style: italic;
+          font-size: 15px;
+          display: inline-block;
+          margin-bottom: 10px;
+          vertical-align: super;
+        }
+        h3 {
+          width: auto;
+          font-size: 1.4em;
+          display: inline-block;
+          margin-right: 5px;
+          font-weight: bolder;
+          margin-bottom: 5px;
+          margin-left: 10px;
+          vertical-align: super;
+        }
+        .logo {
+          width: 30px;
+        }
+      }
+      p {
+        margin-bottom: 5px;
+      }
+
+      h4 {
+        font-size: 1.3em;
+        margin-bottom: 8px;
+        font-weight: 600;
+
+      }
+    }
+  }
+  .first {
+    .three.columns.news {
+      width: 30%;
+    }
+  }
+
+  .second {
+    background: $pumice;
   }
 }

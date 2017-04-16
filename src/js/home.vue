@@ -15,50 +15,115 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="twelve columns">
-                    <h3 class="headline-background">some facts about today</h3>
-                    <div class="five columns weather">
-                        <div class="weather-box">
-                            <div class="weather-headline-wrapper">
-                                <i class="material-icons">location_on</i>
-                                <h2 class="weather-headline">{{ weather.location }}</h2>
-                            </div>
+                <div class="twelve columns infos">
+                    <div class="row first">
+                        <h3 class="headline-background">today 15.4.2017</h3>
+                        <div class="five columns weather">
+                            <div class="weather-box">
+                                <div class="weather-headline-wrapper">
+                                    <i class="material-icons">location_on</i>
+                                    <h2 class="weather-headline">{{ weather.location }}</h2>
+                                </div>
 
-                            <div class="weather-icon-wrapper">
-                                <img :src="weather.icon" />
-                                <span class="temp">{{ weather.temp }} °C</span>
-                            </div>
+                                <div class="weather-icon-wrapper">
+                                    <img :src="weather.icon" />
+                                    <span class="temp">{{ weather.temp }} °C</span>
+                                </div>
 
-                            <div class="weather-desc">
-                                <span class="description">{{ weather.description }}</span>
-                            </div>
-                            <div class="weather-infos twelve columns">
-                                <div class="row">
-                                    <div class="six columns">
-                                        <p><i class="wi wi-cloudy"></i> {{ weather.clouds }} %</p>
+                                <div class="weather-desc">
+                                    <span class="description">{{ weather.description }}</span>
+                                </div>
+                                <div class="weather-infos twelve columns">
+                                    <div class="row">
+                                        <div class="six columns">
+                                            <p><i class="wi wi-cloudy"></i> {{ weather.clouds }} %</p>
+                                        </div>
+                                        <div class="six colums">
+                                            <p><i class="wi wi-thermometer"></i> {{ weather.min }} | {{ weather.max}} °C</p>
+                                        </div>
                                     </div>
-                                    <div class="six colums">
-                                        <p><i class="wi wi-thermometer"></i> {{ weather.min }} | {{ weather.max}} °C</p>
+                                    <div class="row">
+                                        <div class="four columns">
+                                            <p><i class="wi wi-barometer"></i> {{ weather.pressure }} hPa</p>
+                                        </div>
+                                        <div class="four columns">
+                                            <p><i class="wi wi-humidity"></i> {{ weather.humidity }} %</p>
+                                        </div>
+                                        <div class="four columns">
+                                            <p><i class="wi wi-strong-wind"></i> {{ weather.wind }} m/s</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="six columns">
+                                            <p><i class="wi wi-sunrise"></i> {{ weather.sunrise }}</p>
+                                        </div>
+                                        <div class="six columns">
+                                            <p><i class="wi wi-sunset"></i> {{ weather.sunset }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="four columns">
-                                        <p><i class="wi wi-barometer"></i> {{ weather.pressure }} hPa</p>
-                                    </div>
-                                    <div class="four columns">
-                                        <p><i class="wi wi-humidity"></i> {{ weather.humidity }} %</p>
-                                    </div>
-                                    <div class="four columns">
-                                        <p><i class="wi wi-strong-wind"></i> {{ weather.wind }} m/s</p>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="four columns space">
+                            <div class="space-box">
+                                <h3 class="space">There are currently {{ space.number}} humans in space.</h3>
+                                <i class="material-icons">flare</i>
+                                <ul id="space-humans">
+                                    <li v-for="human in space.humans">
+                                        {{ human.name }}
+                                    </li>
+                                    <li><i class="wi wi-alien"></i><i class="wi wi-stars"></i><i class="wi wi-meteor"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="three columns news">
+                            <div class="t3n news-box">
+                                <h4> {{ news.t3n.title }} </h4>
+                                <p> {{ news.t3n.description}}</p>
+                                <button><a :href="news.t3n.url" target="_blank">read more</a></button>
+                                <div class="logo-wrapper">
+                                    <span class="author"> {{ news.t3n.author}}</span>
+                                    <h3 class="t3n news">T3n</h3>
+                                    <img class="t3n logo" src="https://icons.better-idea.org/icon?url=http://t3n.de&size=70..120..200">
                                 </div>
-                                <div class="row">
-                                    <div class="six columns">
-                                        <p><i class="wi wi-sunrise"></i> {{ weather.sunrise }}</p>
-                                    </div>
-                                    <div class="six columns">
-                                        <p><i class="wi wi-sunset"></i> {{ weather.sunset }}</p>
-                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row second">
+                        <!--<div class="three columns news">-->
+                        <!--<div class="reddit news-box">-->
+                        <!--<h4> {{ news.reddit.title }} </h4>-->
+                        <!--<p> {{ news.reddit.description}}</p>-->
+                        <!--<button><a :href="news.reddit.url" target="_blank">read more</a></button>-->
+                        <!--<div class="logo-wrapper">-->
+                        <!--<span class="author"> {{ news.reddit.author}}</span>-->
+                        <!--<h3 class="reddit news">Reddit</h3>-->
+                        <!--<img class="reddit logo" src="https://icons.better-idea.org/icon?url=https://www.reddit.com/r/all&size=70..120..200">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="six columns news">
+                            <div class="fox news-box">
+                                <h4> {{ news.fox.title }} </h4>
+                                <p> {{ news.fox.description}}</p>
+                                <button><a :href="news.fox.url" target="_blank">read more</a></button>
+                                <div class="logo-wrapper">
+                                    <span class="author"> {{ news.fox.author}}</span>
+                                    <h3 class="fox news">Fox Sports</h3>
+                                    <img class="fox logo" src="https://pbs.twimg.com/profile_images/824007776489738241/pFk_8LLO.jpg">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="six columns news">
+                            <div class="guardian news-box">
+                                <h4> {{ news.guardian.title }} </h4>
+                                <p> {{ news.guardian.description}}</p>
+                                <button><a :href="news.guardian.url" target="_blank">read more</a></button>
+                                <div class="logo-wrapper">
+                                    <span class="author"> {{ news.guardian.author}}</span>
+                                    <h3 class="guardian news">The Guardian</h3>
+                                    <img class="guardian logo" src="https://icons.better-idea.org/icon?url=https://www.theguardian.com/uk&size=70..120..200">
                                 </div>
                             </div>
                         </div>
@@ -73,29 +138,51 @@
     export default{
         data() {
             return {
+                apiKey: 'd8d9dfa8e37b4442bc12163ca63ddbd6',
                 weather: {
                     icon: '',
-                    temp: '',
-                    min: '',
-                    max: '',
+                    temp: 0,
+                    min: 0,
+                    max: 0,
                     location: '',
                     description: '',
-                    clouds: '',
-                    pressure: '',
-                    wind: '',
-                    humidity: '',
+                    clouds: 0,
+                    pressure: 0,
+                    wind: 0,
+                    humidity: 0,
                     sunrise: '',
                     sunset: ''
+                },
+                space : {
+                    humans: [],
+                    number: 0
+                },
+                news: {
+                    t3n: '',
+                    reddit: '',
+                    guardian: '',
+                    fox: ''
                 }
 
             }
         },
 
         methods: {
+            randomNumber: function (min,max) {
+                return parseInt(Math.random() * (max - min) + min);
+            },
+            getFlickr: function (home) {
+//              axios.get('https://api.flickr.com/services/rest/?method=flickr.photos.getPopular&api_key=16282ad1a0cc1311fb92737b0ffeff3c&format=json')
+//                      .then((result)=> {
+//                            console.log(result.data);
+//                      })
+//                      .catch((error) => {
+//
+//                      })
+            },
             getWeather: function (home,lat,long) {
                 axios.get('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=9509e3a3ba8822d0958b1bb71a0df721')
                         .then((result) => {
-                            console.log(result.data);
                             home.weather.icon = "http://openweathermap.org/img/w/" + result.data.weather[0].icon + ".png";
                             home.weather.clouds = result.data.clouds['all'];
                             home.weather.description = result.data.weather[0].description;
@@ -118,7 +205,80 @@
                         .catch((error) => {
                             console.log(error);
                         });
-            }
+            },
+            getSpaceHuman: function (home) {
+                axios.get('http://api.open-notify.org/astros.json')
+                        .then((result) => {
+                            home.space.number = result.data.number;
+                            var humans = [];
+                            var index = true;
+                            for(var h of result.data.people) {
+                                humans.push({name:h.name,index});
+                                index = !index;
+                            }
+                            home.space.humans = humans;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
+            getRedditNews: function (home) {
+                axios.get('https://newsapi.org/v1/articles?source=reddit-r-all&sortBy=top&apiKey='+home.apiKey)
+                        .then((result)=> {
+                            var articles = result.data.articles;
+                            var index = home.randomNumber(0,10);
+                            var article = articles[index];
+                            while(!article.description) {
+                                index = home.randomNumber(0,10);
+                                article = articles[index];
+                            }
+                            article.description = article.description.length > 100 ? article.description.substr(0,130) + "..." : article.description;
+                            home.news.reddit = article;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
+            getGuardianNews: function (home) {
+                axios.get('https://newsapi.org/v1/articles?source=the-guardian-uk&sortBy=top&apiKey='+home.apiKey)
+                        .then((result)=> {
+                            var articles = result.data.articles;
+                            var index = home.randomNumber(0,10);
+                            var article = articles[index];
+                            article.description = article.description.length > 100 ? article.description.substr(0,130) + "..." : article.description;
+                            home.news.guardian = article;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
+            getT3nNews: function (home) {
+                axios.get('https://newsapi.org/v1/articles?source=t3n&sortBy=top&apiKey='+home.apiKey)
+                        .then((result)=> {
+                            var articles = result.data.articles;
+                            var index = home.randomNumber(0,10);
+                            var article = articles[index];
+                            article.description = article.description.length > 100 ? article.description.substr(0,130) + "..." : article.description;
+                            home.news.t3n = article;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
+            getFoxNews: function (home) {
+                axios.get('https://newsapi.org/v1/articles?source=fox-sports&sortBy=top&apiKey='+home.apiKey)
+                        .then((result)=> {
+                            var articles = result.data.articles;
+                            var index = home.randomNumber(0,10);
+                            var article = articles[index];
+                            article.description = article.description.length > 100 ? article.description.substr(0,130) + "..." : article.description;
+                            home.news.fox = article;
+
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
         },
         created: function () {
             console.log("created");
@@ -128,8 +288,13 @@
                 var lat = position.coords.latitude;
                 var long = position.coords.longitude;
                 home.getWeather(home,lat,long);
-
             });
+            home.getFlickr(home);
+            home.getSpaceHuman(home);
+            home.getT3nNews(home);
+            home.getRedditNews(home);
+            home.getGuardianNews(home);
+            home.getFoxNews(home);
 
         },
 

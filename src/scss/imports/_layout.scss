@@ -2,6 +2,14 @@ body {
   background-color: $background-color;
   font-family: $font-family;
   font-size: 16px;
+  a {
+    text-decoration: none;
+    color: $light-black;
+  }
+
+  p {
+    word-wrap:break-word;
+  }
 
   /* HEADLINES */
   h1,h2,h3,h4,h5,h6 {
@@ -20,17 +28,15 @@ body {
     margin-top: 30px;
   }
 
-
-
-
-
   .light-bg {
     background: $light-gray;
   }
 
+
   .container {
     &.index {
-	width: 100%;
+
+      width: 100%;
       .eight.columns {
         margin-top: 4%;
       }
@@ -43,12 +49,24 @@ body {
       color: white;
       font-size: 1.7em;
       padding: 8px 0 8px 0;
+      margin: 0;
     }
 
     .columns {
       img.profile-img {
         width: 100%;
         height: auto;
+      }
+    }
+
+    .news {
+      button {
+        &:hover {
+          a {
+            color: $white-smoke;
+          }
+          background-color: $rosa;
+        }
       }
     }
   }
