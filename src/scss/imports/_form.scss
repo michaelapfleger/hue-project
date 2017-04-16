@@ -1,0 +1,26 @@
+.panel-body {
+  .vue-form-generator {
+    .form-group {
+      width: 100%;
+      input[type=text], select {
+        width: 80%;
+        height: 50px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .form-control {
+        width: 80%;
+
+      }
+      &.field-image {
+          input[type=text] {
+            display: none;
+        }
+      }
+    }
+  }
+}
