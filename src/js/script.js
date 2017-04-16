@@ -10,6 +10,7 @@ import axios from "axios";
 
 Vue.use(VueFormGenerator);
 Vue.use(VueRouter);
+Vue.use(VueFormGenerator);
 
 const router = new VueRouter({
     routes: [{
@@ -36,6 +37,6 @@ var app = new Vue({
     template: '<app></app>',
     mounted: function () {
         console.log("mounted");
-    },
+    }
 
 });
