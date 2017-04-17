@@ -1,10 +1,10 @@
 import Vue from "vueCommon";
 import VueRouter from "vue-router";
-import Home from "./home.vue";
-import Today from "./today.vue";
-import Diary from "./diary.vue";
+import Home from "./vue/home.vue";
+import Today from "./vue/today.vue";
+import Diary from "./vue/diary.vue";
 import About from "./about.vue";
-import App from "./app.vue";
+import App from "./vue/app.vue";
 import VueFormGenerator from "vue-form-generator";
 import axios from "axios";
 

@@ -1,5 +1,47 @@
+/* diary */
+@media only screen and (max-width : 1024px){
+  .diary {
+    &:before {
+      //left: 0;
+    }
+    .diary-item {
+      .diary-circle {
+        position: relative;
+      }
+      .diary-date {
+        top: 15%;
+      }
+      .diary-content {
+        width: 100%;
+        margin: 70px auto 30px 0;
+
+        h2 {
+          font-size: 1.4em;
+        }
+
+        button {
+
+        }
+      }
+
+      &:nth-child(even) {
+        .diary-content {
+          float: none;
+          button {
+            float: none;
+          }
+        }
+
+        .diary-date {
+          top: 15%;
+        }
+      }
+    }
+  }
+}
+
 /* menu */
-@media screen and (max-width : 760px){
+@media screen and (max-width : 968px){
   header {
     div.wrapper {
       width: 100%;
@@ -36,3 +78,5 @@
     }
   }
 }
+
+

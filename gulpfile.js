@@ -12,6 +12,7 @@ var plumber = require('gulp-plumber');
 var sass = require('gulp-sass');
 var imagemin = require('gulp-imagemin');
 var nunjucksRender = require('gulp-nunjucks-render');
+
 // var jimp = require('gulp-jimp');
 
 
@@ -24,7 +25,6 @@ gulp.task('css', function () {
         .pipe(cssmin())
         .pipe(gulp.dest('build/css'));
 });
-
 gulp.task('fonts',function () {
     gulp.src('src/font/**/*')
         .pipe(gulp.dest('build/font'));
