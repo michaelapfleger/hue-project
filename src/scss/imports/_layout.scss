@@ -50,8 +50,6 @@ body {
 
   .container {
     &.index {
-
-      width: 100%;
       .eight.columns {
         margin-top: 4%;
       }
@@ -83,4 +81,10 @@ body {
       }
     }
   }
+}
+::selection {
+  background: $rosa;
+}
+::-moz-selection {
+  background: $rosa;
 }

@@ -179,6 +179,10 @@
       color: $dirty-white;
       text-align: center;
 
+      &.got{
+        background: $light-black;
+      }
+
       h5 {
         margin-bottom:0;
         padding: 20px;
@@ -186,7 +190,7 @@
       .character {
         display: block;
         margin-top: 15px;
-        color: $light-black;
+        color: $rosa;
         font-size: 0.8em;
       }
     }

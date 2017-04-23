@@ -8,8 +8,6 @@
       }
     }
 
-
-
     .diary {
       &:before {
         //left: 0;
@@ -80,13 +78,49 @@
 
 
 /* index personal info */
-@media screen and (max-width : 760px){
-  .index {
-    .eight {
-      padding: 10px;
-      text-align: center;
+@media screen and (max-width : 1024px){
+  .container.index {
+    .twelve.columns {
+      .columns {
+        width: 100%;
+        margin-left: 0;
+        h3 {
+          text-align: center;
+          padding: 10px;
+        }
+      }
     }
   }
 }
 
 
+/* home */
+@media only screen and (max-width : 1024px) {
+  .container {
+    .row {
+      .twelve.columns.infos {
+        .first, .second {
+          .columns {
+            &.space, &.news, &.weather, &.holiday {
+              width: 100%;
+              margin-left: 0;
+            }
+          }
+          .columns.space {
+            .space-box {
+              h3 {
+                padding-top: 20px;
+              }
+            }
+          }
+          .news-box {
+            min-height: 200px;
+            .logo-wrapper {
+              position: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}
