@@ -1,13 +1,21 @@
-# Dia.ry
+# Diary
 ## Description:
 A web application for storing all relevant information about the current day.<br>
-You can add text, images, rate your feelings and we add information about the day,<br>
-like the most popular instagram image, youtube video, weather information and geolocation etc.
+You can add text, images, companions, rate your feelings and add a location.<br>
+On the dashboard there are some news and information about the current day like weather,<br>
+and some fun stuff.<br>
+<br>
+**Login required**
 ## Team:
 Michaela Pfleger, S1610629014
 
 ## Technologies used
 * Vue.js
 * Vue Router
-* Vue Form Builder
+* Vuex
+* Firebase
+* Axios
 * SASS/SCSS
+* Material Design Icons from[https://material.io/icons/](https://material.io/icons/)
+* Weather Icons from[http://weathericons.io/](http://weathericons.io/)
+
