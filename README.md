@@ -34,6 +34,13 @@ Michaela Pfleger, S1610629014
 In this project I was using [gulp.js](http://gulpjs.com) as a build tool, which bundles various tasks, which makes it easy to get the app compiled and running.
 After the app has been built, you can find the compiled version in the `build` directory.
 
+## Test user
+I have created a test user to show what the application is capable of. Feel free to create your own user by signing up with your own e-mail address and starting your own diary.
+
+`Test user:`
+`E-Mail: s1610629014@students.fh-hagenberg.at`
+`Password: password`
+
 # Author
 Michaela Pfleger
 (c) Copyright 2017. All rights reserved ;)
