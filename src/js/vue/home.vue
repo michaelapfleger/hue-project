@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="twelve columns infos">
                     <div class="row first">
-                        <h3 class="headline-background">today 15.4.2017</h3>
+                        <h3 class="headline-background">today {{ today }}</h3>
                         <div class="five columns weather">
                             <div class="weather-box">
                                 <div class="weather-wrapper">
@@ -135,21 +135,35 @@
 
                     </div>
                     <div class="row third">
-                        <div class="six columns">
-                            xx
+                        <div class="twelve columns">
+                            <h3 class="headline-background">congrats, you made it to the fun part</h3>
                         </div>
-                        <div class="six columns news">
-                            <div class="fox news-box">
-                                <h4> {{ news.fox.title }} </h4>
-                                <p> {{ news.fox.description}}</p>
-                                <button><a :href="news.fox.url" target="_blank">read more</a></button>
-                                <div class="logo-wrapper">
-                                    <span class="author"> {{ news.fox.author}}</span>
-                                    <h3 class="fox news">Fox Sports</h3>
-                                    <img class="fox logo" src="https://pbs.twimg.com/profile_images/824007776489738241/pFk_8LLO.jpg">
-                                </div>
+                        <div class="twelve columns quote">
+                            <div v-if="quote.chuckNorris">
+                                <h5>
+                                    <i class="material-icons">format_quote</i>{{ quote.chuckNorris }}<i class="material-icons">format_quote</i>
+                                </h5>
                             </div>
                         </div>
+                        <div class="twelve columns">
+                            <div v-if="gif.animal" class="animal">
+                                <img :src="gif.animal" />
+                            </div>
+                        </div>
+                        <div class="twelve columns quote got">
+                            <div v-if="quote.got" >
+                                <h5>
+                                    <i class="material-icons">format_quote</i>{{ quote.got.quote }}<i class="material-icons">format_quote</i>
+                                    <span class="character">{{ quote.got.character }}</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="twelve columns">
+                            <div v-if="gif.got" class="animal">
+                                <img :src="gif.got" />
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -163,6 +177,7 @@
         data() {
             return {
                 upcomingHolidays: null,
+                today: null,
                 isHoliday: {
                     text:"Sorry, today is not a holiday.",
                     check: false
@@ -193,15 +208,71 @@
                 },
                 news: {
                     t3n: '',
-                    reddit: '',
                     guardian: '',
-                    fox: ''
+                },
+                gif: {
+                    animal: '',
+                    got: ''
+                },
+                quote: {
+                    chuckNorris: '',
+                    got: {
+                        quote: '',
+                        character: ''
+                    }
                 }
 
             }
         },
 
         methods: {
+            getToday: function (home) {
+                var today = new Date();
+                var day = today.getDate();
+                var month = today.getMonth()+1;
+                var year = today.getFullYear();
+                home.today = day + "." + month + "." + year;
+            },
+            getAnimalGif: function (home) {
+                const rand = home.randomNumber(0,1000);
+                axios.get('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC&offset=' + rand + '&limit=1')
+                        .then((result) => {
+                            home.gif.animal = result.data.data[0].images.original.url;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
+            getGotGif: function (home,character) {
+                const rand = home.randomNumber(0,100);
+                axios.get('http://api.giphy.com/v1/gifs/search?q=game+of+thrones+' + character.replace(" ", "+") + '&api_key=dc6zaTOxFJmzC&offset=' + rand + '&limit=1')
+                        .then((result) => {
+                            home.gif.got = result.data.data[0].images.original.url;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
+            getGOT: function (home) {
+                axios.get('https://got-quotes.herokuapp.com/quotes')
+                        .then((result) => {
+                            home.quote.got = result.data;
+                            home.getGotGif(home,home.quote.got.character);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
+            getChuckNorris: function (home) {
+                axios.get('https://api.chucknorris.io/jokes/random')
+                        .then((result) => {
+                            home.quote.chuckNorris = result.data.value;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+            },
+
             getHolidays: function (home) {
                 var hd = new Holidays('AT');
                 var today = new Date();
@@ -310,20 +381,7 @@
                             console.log(error);
                         });
             },
-            getFoxNews: function (home) {
-                axios.get('https://newsapi.org/v1/articles?source=fox-sports&sortBy=top&apiKey='+home.apiKey)
-                        .then((result)=> {
-                            var articles = result.data.articles;
-                            var index = home.randomNumber(0,10);
-                            var article = articles[index];
-                            article.description = article.description.length > 100 ? article.description.substr(0,130) + "..." : article.description;
-                            home.news.fox = article;
 
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-            },
         },
         created: function () {
             console.log("created");
@@ -332,17 +390,19 @@
             navigator.geolocation.getCurrentPosition(function (position) {
                 var lat = position.coords.latitude;
                 var long = position.coords.longitude;
-                home.getWeather(home,lat,long);
+                home.getWeather(home, lat, long);
             });
 
+            home.getToday(home);
             home.getSpaceHuman(home);
             home.getT3nNews(home);
-
             home.getGuardianNews(home);
-            home.getFoxNews(home);
             home.getHolidays(home);
+            home.getAnimalGif(home);
+            home.getChuckNorris(home);
+            home.getGOT(home);
 
-        },
+        }
 
     }
 </script>

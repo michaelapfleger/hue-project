@@ -131,6 +131,9 @@
 
   .second {
     background: $pumice;
+    .news-box {
+      padding-top: 20px;
+    }
     .logo-wrapper {
       bottom: 0;
     }
@@ -139,7 +142,7 @@
       color: $dirty-white;
       text-align:center;
       padding-top: 30px;
-
+      min-height: 295px;
       .material-icons {
         color: $rosa;
       }
@@ -158,6 +161,33 @@
             margin-bottom: 3px;
           }
         }
+      }
+    }
+  }
+  .third {
+    .animal {
+      padding: 20px;
+      text-align: center;
+      img {
+        max-width: 100%;
+      }
+    }
+    .columns.quote {
+      margin-left:0;
+      padding: 20px;
+      background: $rosa;
+      color: $dirty-white;
+      text-align: center;
+
+      h5 {
+        margin-bottom:0;
+        padding: 20px;
+      }
+      .character {
+        display: block;
+        margin-top: 15px;
+        color: $light-black;
+        font-size: 0.8em;
       }
     }
   }
