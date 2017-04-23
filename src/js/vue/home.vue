@@ -106,20 +106,25 @@
                             </div>
                         </div>
                         <div class="six columns holiday">
+                            <i class="material-icons">event</i>
+
                             <div v-if="!isHoliday.check">
-                                {{ isHoliday.text }}
+                                <h4>{{ isHoliday.text }}</h4>
                             </div>
                             <div v-else>
-                                <p> {{ holiday.text }}</p>
-                                {{ holiday.name }}
-                                {{ holiday.date }}
+                                <h4> {{ holiday.text }}</h4>
+                                <ul>
+                                    <li class="current">{{ holiday.name }}  </li>
+                                </ul>
                             </div>
-                            <div v-if="upcomingHolidays">
+                            <div v-if="upcomingHolidays" class="upcomingHolidays">
                                 <p>Upcoming holidays:</p>
-                                <p v-for="holiday in upcomingHolidays">
-                                    {{ holiday.name }}
-                                    {{ holiday.date }}
-                                </p>
+                                <ul>
+                                    <li v-for="holiday in upcomingHolidays">
+                                        {{ holiday.name }}
+                                        {{ holiday.date }}
+                                    </li>
+                                </ul>
                             </div>
                             <div v-else>
                                 <p>There are no upcoming holidays for this year anymore.</p>
@@ -219,7 +224,7 @@
                 }
 
                 var h;
-                if(h = hd.isHoliday(new Date(year + '-' + month +'-' + day +' 10:00:00 GMT-0600'))) {
+                if(h = hd.isHoliday(new Date('2017-05-01 10:00:00 GMT-0600'))) {
                     console.log(h);
                     home.isHoliday.check = true;
                     home.holiday.date = day + "." + month + "." + year;

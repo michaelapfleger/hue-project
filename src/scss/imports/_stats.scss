@@ -78,7 +78,7 @@
     margin-left: 0;
     .news-box {
       padding: 10px 15px 15px 15px;
-      min-height: 300px;
+      min-height: 260px;
       position: relative;
       button {
         margin-top: 10px;
@@ -133,6 +133,32 @@
     background: $pumice;
     .logo-wrapper {
       bottom: 0;
+    }
+    .holiday {
+      background: $light-black;
+      color: $dirty-white;
+      text-align:center;
+      padding-top: 30px;
+
+      .material-icons {
+        color: $rosa;
+      }
+      .current {
+        font-size: 1.4em;
+        color: $rosa;
+      }
+
+      .upcomingHolidays {
+        p {
+          margin-bottom: 8px;
+          font-weight: bold;
+        }
+        ul {
+          li {
+            margin-bottom: 3px;
+          }
+        }
+      }
     }
   }
 }
