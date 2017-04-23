@@ -94,16 +94,17 @@
                     <div class="row second">
 
                         <div class="six columns news">
-                            <div class="fox news-box">
-                                <h4> {{ news.fox.title }} </h4>
-                                <p> {{ news.fox.description}}</p>
-                                <button><a :href="news.fox.url" target="_blank">read more</a></button>
+                            <div class="guardian news-box">
+                                <h4> {{ news.guardian.title }} </h4>
+                                <p> {{ news.guardian.description}}</p>
+                                <button><a :href="news.guardian.url" target="_blank">read more</a></button>
                                 <div class="logo-wrapper">
-                                    <span class="author"> {{ news.fox.author}}</span>
-                                    <h3 class="fox news">Fox Sports</h3>
-                                    <img class="fox logo" src="https://pbs.twimg.com/profile_images/824007776489738241/pFk_8LLO.jpg">
+                                    <span class="author"> {{ news.guardian.author}}</span>
+                                    <h3 class="guardian news">The Guardian</h3>
+                                    <img class="guardian logo" src="https://icons.better-idea.org/icon?url=https://www.theguardian.com/uk&size=70..120..200">
                                 </div>
                             </div>
+
                         </div>
                         <div class="six columns holiday">
                             <i class="material-icons">event</i>
@@ -134,15 +135,18 @@
 
                     </div>
                     <div class="row third">
+                        <div class="six columns">
+                            xx
+                        </div>
                         <div class="six columns news">
-                            <div class="guardian news-box">
-                                <h4> {{ news.guardian.title }} </h4>
-                                <p> {{ news.guardian.description}}</p>
-                                <button><a :href="news.guardian.url" target="_blank">read more</a></button>
+                            <div class="fox news-box">
+                                <h4> {{ news.fox.title }} </h4>
+                                <p> {{ news.fox.description}}</p>
+                                <button><a :href="news.fox.url" target="_blank">read more</a></button>
                                 <div class="logo-wrapper">
-                                    <span class="author"> {{ news.guardian.author}}</span>
-                                    <h3 class="guardian news">The Guardian</h3>
-                                    <img class="guardian logo" src="https://icons.better-idea.org/icon?url=https://www.theguardian.com/uk&size=70..120..200">
+                                    <span class="author"> {{ news.fox.author}}</span>
+                                    <h3 class="fox news">Fox Sports</h3>
+                                    <img class="fox logo" src="https://pbs.twimg.com/profile_images/824007776489738241/pFk_8LLO.jpg">
                                 </div>
                             </div>
                         </div>
@@ -224,7 +228,7 @@
                 }
 
                 var h;
-                if(h = hd.isHoliday(new Date('2017-05-01 10:00:00 GMT-0600'))) {
+                if(h = hd.isHoliday(new Date(year + '-' + month +'-' + day +' 10:00:00 GMT-0600'))) {
                     console.log(h);
                     home.isHoliday.check = true;
                     home.holiday.date = day + "." + month + "." + year;
