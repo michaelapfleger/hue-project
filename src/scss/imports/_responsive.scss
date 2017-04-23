@@ -1,39 +1,50 @@
 /* diary */
 @media only screen and (max-width : 1024px){
-  .diary {
-    &:before {
-      //left: 0;
-    }
-    .diary-item {
-      .diary-circle {
-        position: relative;
-      }
-      .diary-date {
-        top: 15%;
-      }
-      .diary-content {
+  .container {
+    .diary-detail {
+      .six.columns {
         width: 100%;
-        margin: 70px auto 30px 0;
-
-        h2 {
-          font-size: 1.4em;
-        }
-
-        button {
-
-        }
+        margin-left:0;
       }
+    }
 
-      &:nth-child(even) {
+
+
+    .diary {
+      &:before {
+        //left: 0;
+      }
+      .diary-item {
+        .diary-circle {
+          position: relative;
+        }
+        .diary-date {
+          top: 15%;
+        }
         .diary-content {
-          float: none;
+          width: 100%;
+          margin: 70px auto 30px 0;
+
+          h2 {
+            font-size: 1.4em;
+          }
+
           button {
-            float: none;
+
           }
         }
 
-        .diary-date {
-          top: 15%;
+        &:nth-child(even) {
+          .diary-content {
+            float: none;
+            button {
+              float: none;
+            }
+          }
+
+          .diary-date {
+            top: 15%;
+          }
         }
       }
     }
@@ -69,7 +80,6 @@
 
 
 /* index personal info */
-/* menu */
 @media screen and (max-width : 760px){
   .index {
     .eight {

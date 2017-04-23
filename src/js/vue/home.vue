@@ -20,18 +20,20 @@
                         <h3 class="headline-background">today 15.4.2017</h3>
                         <div class="five columns weather">
                             <div class="weather-box">
-                                <div class="weather-headline-wrapper">
-                                    <i class="material-icons">location_on</i>
-                                    <h2 class="weather-headline">{{ weather.location }}</h2>
-                                </div>
+                                <div class="weather-wrapper">
+                                    <div class="weather-headline-wrapper">
+                                        <i class="material-icons">location_on</i>
+                                        <h2 class="weather-headline">{{ weather.location }}</h2>
+                                    </div>
 
-                                <div class="weather-icon-wrapper">
-                                    <img :src="weather.icon" />
-                                    <span class="temp">{{ weather.temp }} °C</span>
-                                </div>
+                                    <div class="weather-icon-wrapper">
+                                        <img :src="weather.icon" />
+                                        <span class="temp">{{ weather.temp }} °C</span>
+                                    </div>
 
-                                <div class="weather-desc">
-                                    <span class="description">{{ weather.description }}</span>
+                                    <div class="weather-desc">
+                                        <span class="description">{{ weather.description }}</span>
+                                    </div>
                                 </div>
                                 <div class="weather-infos twelve columns">
                                     <div class="row">
@@ -90,18 +92,7 @@
                         </div>
                     </div>
                     <div class="row second">
-                        <!--<div class="three columns news">-->
-                        <!--<div class="reddit news-box">-->
-                        <!--<h4> {{ news.reddit.title }} </h4>-->
-                        <!--<p> {{ news.reddit.description}}</p>-->
-                        <!--<button><a :href="news.reddit.url" target="_blank">read more</a></button>-->
-                        <!--<div class="logo-wrapper">-->
-                        <!--<span class="author"> {{ news.reddit.author}}</span>-->
-                        <!--<h3 class="reddit news">Reddit</h3>-->
-                        <!--<img class="reddit logo" src="https://icons.better-idea.org/icon?url=https://www.reddit.com/r/all&size=70..120..200">-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
+
                         <div class="six columns news">
                             <div class="fox news-box">
                                 <h4> {{ news.fox.title }} </h4>
@@ -114,7 +105,30 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="six columns holiday">
+                            <div v-if="!isHoliday.check">
+                                {{ isHoliday.text }}
+                            </div>
+                            <div v-else>
+                                <p> {{ holiday.text }}</p>
+                                {{ holiday.name }}
+                                {{ holiday.date }}
+                            </div>
+                            <div v-if="upcomingHolidays">
+                                <p>Upcoming holidays:</p>
+                                <p v-for="holiday in upcomingHolidays">
+                                    {{ holiday.name }}
+                                    {{ holiday.date }}
+                                </p>
+                            </div>
+                            <div v-else>
+                                <p>There are no upcoming holidays for this year anymore.</p>
+                            </div>
+                        </div>
 
+
+                    </div>
+                    <div class="row third">
                         <div class="six columns news">
                             <div class="guardian news-box">
                                 <h4> {{ news.guardian.title }} </h4>
@@ -135,9 +149,20 @@
 </template>
 <script>
     import axios from "axios";
+    var Holidays = require('date-holidays');
     export default{
         data() {
             return {
+                upcomingHolidays: null,
+                isHoliday: {
+                    text:"Sorry, today is not a holiday.",
+                    check: false
+                },
+                holiday: {
+                    text: "Yay! It's a holiday today!",
+                    date: '',
+                    name: ''
+                },
                 apiKey: 'd8d9dfa8e37b4442bc12163ca63ddbd6',
                 weather: {
                     icon: '',
@@ -168,18 +193,45 @@
         },
 
         methods: {
+            getHolidays: function (home) {
+                var hd = new Holidays('AT');
+                var today = new Date();
+                var day = today.getDate();
+                var month = today.getMonth()+1;
+                var year = today.getFullYear();
+                if(hd.getHolidays(year)) {
+                    home.upcomingHolidays = [];
+                }
+                var i = 0;
+                for (let value of hd.getHolidays(year)) {
+                    if (i > 1) {
+                        break;
+                    }
+                    var holidayDate = new Date(value.date);
+                    if (holidayDate.getTime() > today.getTime()) {
+                        var holiday = {
+                            name: value.name,
+                            date: holidayDate.getDate() + "." + (holidayDate.getMonth()+1) + "." + holidayDate.getFullYear()
+                        };
+                        i++;
+                        home.upcomingHolidays.push(holiday);
+                    }
+                }
+
+                var h;
+                if(h = hd.isHoliday(new Date(year + '-' + month +'-' + day +' 10:00:00 GMT-0600'))) {
+                    console.log(h);
+                    home.isHoliday.check = true;
+                    home.holiday.date = day + "." + month + "." + year;
+                    home.holiday.name = h.name;
+                }
+
+            },
+
             randomNumber: function (min,max) {
                 return parseInt(Math.random() * (max - min) + min);
             },
-            getFlickr: function (home) {
-//              axios.get('https://api.flickr.com/services/rest/?method=flickr.photos.getPopular&api_key=16282ad1a0cc1311fb92737b0ffeff3c&format=json')
-//                      .then((result)=> {
-//                            console.log(result.data);
-//                      })
-//                      .catch((error) => {
-//
-//                      })
-            },
+
             getWeather: function (home,lat,long) {
                 axios.get('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=9509e3a3ba8822d0958b1bb71a0df721')
                         .then((result) => {
@@ -222,23 +274,7 @@
                             console.log(error);
                         });
             },
-            getRedditNews: function (home) {
-                axios.get('https://newsapi.org/v1/articles?source=reddit-r-all&sortBy=top&apiKey='+home.apiKey)
-                        .then((result)=> {
-                            var articles = result.data.articles;
-                            var index = home.randomNumber(0,10);
-                            var article = articles[index];
-                            while(!article.description) {
-                                index = home.randomNumber(0,10);
-                                article = articles[index];
-                            }
-                            article.description = article.description.length > 100 ? article.description.substr(0,130) + "..." : article.description;
-                            home.news.reddit = article;
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-            },
+
             getGuardianNews: function (home) {
                 axios.get('https://newsapi.org/v1/articles?source=the-guardian-uk&sortBy=top&apiKey='+home.apiKey)
                         .then((result)=> {
@@ -289,12 +325,13 @@
                 var long = position.coords.longitude;
                 home.getWeather(home,lat,long);
             });
-            home.getFlickr(home);
+
             home.getSpaceHuman(home);
             home.getT3nNews(home);
-            home.getRedditNews(home);
+
             home.getGuardianNews(home);
             home.getFoxNews(home);
+            home.getHolidays(home);
 
         },
 

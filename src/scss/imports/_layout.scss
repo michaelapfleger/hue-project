@@ -23,10 +23,18 @@ body {
     font-size: 1.2em;
   }
 
+  .center {
+    text-align: center;
+  }
+
   /* AUTO MARGIN PADDING */
   .mt30 {
     margin-top: 30px;
   }
+  .mt20 {
+    margin-top: 20px;
+  }
+
 
   .mb30 {
     margin-bottom: 30px;
@@ -63,14 +71,12 @@ body {
       }
     }
 
-    .news {
-      button {
-        &:hover {
-          a {
-            color: $white-smoke;
-          }
-          background-color: $rosa;
+    button {
+      &:hover {
+        a {
+          color: $white-smoke;
         }
+        background-color: $rosa;
       }
     }
   }

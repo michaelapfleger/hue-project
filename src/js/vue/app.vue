@@ -7,16 +7,15 @@
                     <input type="checkbox" id="show-menu" role="button">
                     <ul id="menu">
                         <li class="icon-border"><router-link to="/"><i class="material-icons">favorite_border</i></router-link></li>
-                        <li><router-link to="/today">Today</router-link></li>
-                        <li><router-link to="/diary">Diary</router-link></li>
-                        <li><router-link to="/profile">Profile</router-link></li>
-                        <li><router-link to="/about">About</router-link></li>
+                        <li><router-link to="/today">today</router-link></li>
+                        <li><router-link to="/diary">diary</router-link></li>
+                        <li><router-link to="/profile">profile</router-link></li>
+                        <li><router-link to="/about">about</router-link></li>
 
                     </ul>
                 </div>
             </div>
         </header>
-
         <router-view></router-view>
     </div>
 </template>

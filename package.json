@@ -30,13 +30,14 @@
     "sass-loader": "^6.0.3",
     "vinyl-named": "^1.1.0",
     "vue-loader": "^11.3.4",
-    "vue-template-compiler": "^2.2.6",
     "webpack": "^2.2.1",
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
     "axios": "^0.16.1",
     "bootstrap-sass": "^3.3.7",
+    "date-holidays": "^0.1.7",
+    "firebase": "^3.7.8",
     "gulp-jimp": "^1.2.7",
     "gulp-sass": "^3.1.0",
     "gulp-scss": "^1.4.0",

@@ -1,26 +1,55 @@
 .panel-body {
-  .vue-form-generator {
+  form {
     .form-group {
       width: 100%;
-      input[type=text], select {
-        width: 80%;
-        height: 50px;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
+      button.removeImage {
+        display: block;
+        margin-bottom: 30px;
       }
-      .form-control {
-        width: 80%;
+      label {
+        font-weight: normal;
+        margin-top: 20px;
+        &.feeling {
+          display: inline-block;
+          margin-top: 0;
+        }
 
-      }
-      &.field-image {
-          input[type=text] {
-            display: none;
+        &> input {
+          visibility: hidden;
+          position: absolute;
+          &:checked + i{
+            color: $rosa;
+          }
+          &+i {
+            cursor:pointer;
+            border:2px solid transparent;
+            font-size: 3em;
+            &:hover {
+              color: $rosa;
+            }
+          }
+        }
+
+        .required {
+          color: $rosa;
+          display: inline-block;
+          margin-left: 4px;
         }
       }
+
+      input {
+        height: 50px;
+      }
+      textarea{
+        height: 100px;
+      }
+
+      .image-upload {
+        img {
+          max-width: 100%;
+        }
+      }
+
     }
   }
 }

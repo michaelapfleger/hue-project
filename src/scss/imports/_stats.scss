@@ -2,10 +2,12 @@
   background: $white-smoke;
   .weather {
     margin: 0;
-    background: $light-black;
     color: $cararra;
     .weather-box {
-
+      .weather-wrapper {
+        background: $light-black;
+        padding-bottom:20px;
+      }
       .weather-desc {
         text-align: center;
       }
@@ -36,10 +38,8 @@
       }
       .weather-infos {
         text-align: center;
-        background: $light-gray;
         color: $light-black;
-        padding-top: 20px;
-        margin-top: 20px;
+        padding-top: 40px;
       }
     }
   }
@@ -131,5 +131,8 @@
 
   .second {
     background: $pumice;
+    .logo-wrapper {
+      bottom: 0;
+    }
   }
 }
