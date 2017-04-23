@@ -37,8 +37,8 @@ After the app has been built, you can find the compiled version in the `build` d
 ## Test user
 I have created a test user to show what the application is capable of. Feel free to create your own user by signing up with your own e-mail address and starting your own diary.
 
-`Test user:`
-`E-Mail: s1610629014@students.fh-hagenberg.at`
+`Test user:`<br>
+`E-Mail: s1610629014@students.fh-hagenberg.at`<br>
 `Password: password`
 
 # Author
