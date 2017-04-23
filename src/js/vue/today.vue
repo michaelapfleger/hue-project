@@ -71,7 +71,20 @@
     import firebase from '../lib/firebase';
     import VueRouter from "vue-router";
     import Diary from "../vue/diary.vue";
+    import Detail from "../vue/details.vue";
     import axios from "axios";
+    const router = new VueRouter({
+        routes: [{
+            path: '/diary',
+            name: 'diary',
+            component: Diary
+        },
+            {
+                path: '/diary/:postId/detail',
+                name: 'detail',
+                component: Detail
+            }]
+    });
 
     export default{
 
@@ -136,7 +149,7 @@
                 diaryRef.set(diary_).catch(function (error) {
                     console.log(error);
                 }).then(() => {
-                    router.go('diary');
+                    router.push({ path: 'diary' });
                 });
             },
             sendDiary: function (diary) {
