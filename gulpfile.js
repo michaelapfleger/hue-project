@@ -41,11 +41,6 @@ gulp.task('favicon', function () {
         .pipe(gulp.dest('build/img/fav'));
 });
 
-gulp.task('profile-img', function () {
-    gulp.src('src/img/profile/**/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('build/img/profile'));
-});
 
 gulp.task('scss', function () {
     gulp.src('src/scss/**/*.scss')
@@ -91,12 +86,11 @@ gulp.task('watch',function () {
     gulp.watch('src/scss/**/*',['scss']);
     gulp.watch('src/css/**/*',['css']);
     gulp.watch('src/img/*',['img']);
-    gulp.watch('src/img/profile/*',['profile-img']);
     gulp.watch('src/templates/**/*',['templates']);
 });
 
 
-gulp.task('default', ['css','scss','fonts','js', 'img', 'favicon','profile-img', 'templates']);
+gulp.task('default', ['css','scss','fonts','js', 'img', 'favicon', 'templates']);
 gulp.task('dev', ['default', 'serve', 'watch']);
 
 

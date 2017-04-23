@@ -1,0 +1,40 @@
+.container {
+  &.profile {
+    .twelve.columns {
+      text-align: center;
+      .userImage {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        max-width: 30%;
+      }
+      .showInput, .showImageInput {
+        display: inline-block;
+        &:hover {
+          cursor: pointer;
+          color: $rosa;
+        }
+      }
+      .profile-label {
+        display: inline-block;
+        color: $rosa;
+        margin-bottom: 15px;
+      }
+      .profile-value {
+        display: inline-block;
+      }
+    }
+    .image-upload {
+      img {
+        max-width: 30%;
+        display: inline-block;
+        float: none;
+      }
+      .removeImage {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}

@@ -49,8 +49,10 @@ body {
   }
 
   .container {
+    z-index: 0;
     &.index {
       .eight.columns {
+
         margin-top: 4%;
       }
     }
@@ -66,9 +68,10 @@ body {
     }
 
     .columns {
-      img.profile-img {
-        width: 100%;
-        height: auto;
+      img.profile-image {
+        width: 300px;
+        display: inline;
+        float: right;
       }
     }
 
