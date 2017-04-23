@@ -1,15 +1,12 @@
 <template lang="html">
-    <div>
+    <div v-if="$store.state.user">
         <div class="container index">
             <div class="row">
                 <div class="twelve columns light-bg">
-                    <div class="four columns">
-                        <img src="img/profile/img.jpg" class="profile-img"/>
-                    </div>
-                    <div class="eight columns">
-                        <h1>hello michaela!</h1>
-                        <h3 class="smaller">how are you doing today? random lorem ipsum text inserted here</h3>
-                    </div>
+                    <img class="profile-image" v-if="$store.state.user.image" :src="$store.state.user.image" />
+                    <h1 class="mt20">hello {{ $store.state.user.name }}!</h1>
+                    <h3 class="smaller center">how are you doing today?</h3>
+
                 </div>
             </div>
         </div>
@@ -172,6 +169,10 @@
 </template>
 <script>
     import axios from "axios";
+    import firebase from '../lib/firebase';
+    import Login from "../vue/login.vue";
+    import VueRouter from "vue-router";
+
     var Holidays = require('date-holidays');
     export default{
         data() {
@@ -390,27 +391,35 @@
                         });
             },
 
+
         },
         created: function () {
             console.log("created");
             var _this = this;
 
-            navigator.geolocation.getCurrentPosition( (position) => {
-                var lat = position.coords.latitude;
-                var long = position.coords.longitude;
-                _this.getWeather(lat, long);
-            });
 
-            this.getToday();
-            this.getSpaceHuman();
-            this.getT3nNews();
-            this.getGuardianNews();
-            this.getHolidays();
-            this.getAnimalGif();
-            this.getChuckNorris();
-            this.getGOT();
+            if(this.$store.state.user) {
 
-        }
+                navigator.geolocation.getCurrentPosition( (position) => {
+                    var lat = position.coords.latitude;
+                    var long = position.coords.longitude;
+                    _this.getWeather(lat, long);
+                });
+
+                this.getToday();
+                this.getSpaceHuman();
+                this.getT3nNews();
+                this.getGuardianNews();
+                this.getHolidays();
+                this.getAnimalGif();
+                this.getChuckNorris();
+                this.getGOT();
+            } else {
+                this.$router.push({path: "/"});
+            }
+
+        },
+
 
     }
 </script>

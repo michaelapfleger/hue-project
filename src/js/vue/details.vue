@@ -59,7 +59,7 @@
     export default{
         data: function () {
             return {
-                projectId: this.$route.params.projectId,
+                postId: this.$route.params.postId,
                 item: null,
                 feelings: [
                     'mood',
@@ -84,7 +84,7 @@
             firebase.auth().signInAnonymously().catch((error) => {
                 console.log(error.message);
             }).then(() => {
-                firebase.database().ref('diary').orderByKey().equalTo(this.projectId).on('value', (snapshot) => {
+                firebase.database().ref('diary').orderByKey().equalTo(this.postId).on('value', (snapshot) => {
                     snapshot.forEach((childSnapshot) => {
                         var childData = childSnapshot.val();
                         var date = new Date(childData.createdAt);

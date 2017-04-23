@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="container mt20">
+    <div v-if="$store.state.user" class="container mt20">
         <h1>today</h1>
         <p class="center">tell us a little bit about your day.</p>
         <div class="panel-body">
@@ -69,29 +69,17 @@
 </template>
 <script>
     import firebase from '../lib/firebase';
-    import VueRouter from "vue-router";
     import Diary from "../vue/diary.vue";
+    import Login from "../vue/login.vue";
     import Detail from "../vue/details.vue";
     import axios from "axios";
-    const router = new VueRouter({
-        routes: [{
-            path: '/diary',
-            name: 'diary',
-            component: Diary
-        },
-            {
-                path: '/diary/:postId/detail',
-                name: 'detail',
-                component: Detail
-            }]
-    });
+
 
     export default{
 
         data: function () {
             return {
                 status: '-',
-                username: 'Unknown',
                 image: '',
                 file: null,
                 diary: {
@@ -101,7 +89,8 @@
                     text: "",
                     companions: "",
                     feeling: null,
-                    pos: ''
+                    pos: '',
+                    userMail: ''
                 }
             }
         },
@@ -145,11 +134,12 @@
 
             },
             sendToDB: function (diary_) {
+                var _this = this;
                 const diaryRef = firebase.database().ref('diary').push();
                 diaryRef.set(diary_).catch(function (error) {
                     console.log(error);
                 }).then(() => {
-                    router.push({ path: 'diary' });
+                    _this.$router.push({ path: 'diary' });
                 });
             },
             sendDiary: function (diary) {
@@ -159,7 +149,8 @@
                 let diary_ = {
                     text: diary.text,
                     title: diary.title,
-                    username: 'michi',
+                    username: _this.$store.state.user.name,
+                    usermail: _this.$store.state.user.email,
                     createdAt: (new Date()).getTime(),
                     companions: diary.companions,
                     feeling: diary.feeling,
@@ -191,7 +182,14 @@
             }
         },
         mounted: function () {
-            this.getPosition();
+
+            if(this.$store.state.user) {
+                this.getPosition();
+            } else {
+                this.$router.push({path: "/"});
+            }
+
+
         }
 
     }
