@@ -32,7 +32,7 @@
         },
 
         mounted: function () {
-            firebase.auth().signInAnonymously().catch(function(error) {
+            firebase.auth().signInAnonymously().catch((error) => {
                 console.log(error.message);
             }).then(() => {
                 firebase.database().ref('diary').on('value', (snapshot) => {
@@ -41,7 +41,7 @@
                         var childKey = childSnapshot.key;
                         var childData = childSnapshot.val();
                         var date = new Date(childData.createdAt);
-                        childData.createdAt = date.getDate() + "." + (date.getMonth()+1) + "."+date.getFullYear();
+                        childData.createdAt = `${date.getDate()}.${(date.getMonth()+1)}.${date.getFullYear()}`;
                         childData.id = childKey;
                         if(childData.text.length > 200) {
                             childData.text = childData.text.substr(0, 200) + "...";
@@ -49,7 +49,6 @@
                         newDiary.push(childData);
                     });
                     this.items = newDiary.reverse();
-//                    console.log(newDiary);
                 });
             });
         }

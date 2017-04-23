@@ -115,15 +115,15 @@
             removeImage: function (e) {
                 this.image = '';
             },
-            getPosition: function (home) {
+            getPosition: function () {
                 var lat,long;
-                navigator.geolocation.getCurrentPosition(function (position) {
+                var _this = this;
+                navigator.geolocation.getCurrentPosition( (position) => {
                     lat = position.coords.latitude;
                     long = position.coords.longitude;
-                    axios.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat +','+ long +'&sensor=true')
+                    axios.get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&sensor=true`)
                             .then((result) => {
-                                home.diary.pos = result.data.results[0].formatted_address;
-                                console.log("in der getPosition", home.diary.pos);
+                                _this.diary.pos = result.data.results[0].formatted_address;
                             })
                             .catch((error) => {
                                 console.log(error);
@@ -136,14 +136,12 @@
                 diaryRef.set(diary_).catch(function (error) {
                     console.log(error);
                 }).then(() => {
-                    console.log("wrote data to database", diary_);
-//                        router.go('/diary');
+                    router.go('diary');
                 });
             },
             sendDiary: function (diary) {
                 var lat,long,pos;
                 var _this = this;
-                console.log("in der sendDiary", _this.diary.pos);
 
                 let diary_ = {
                     text: diary.text,
@@ -155,16 +153,16 @@
                     image: this.image,
                     pos: _this.diary.pos
                 };
-                if(this.file) {
+                if(this.file && diary_.text && diary_.title) {
                     var metadata = {
                         contentType: this.file.type,
                     };
                     var storageRef = firebase.storage().ref();
-                    var uploadTask = storageRef.child('images/' + diary_.createdAt + this.file.name).put(this.file, metadata);
+                    var uploadTask = storageRef.child(`images/${diary_.createdAt} ${this.file.name}`).put(this.file, metadata);
 
-                    uploadTask.on('state_changed', function (snapshot) {
+                    uploadTask.on('state_changed',  (snapshot) => {
                         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
+                        console.log(`Upload is ${progress} % done`);
                     }, function (error) {
                         console.log(error);
                     }, function () {
@@ -173,12 +171,14 @@
                         _this.sendToDB(diary_);
                     });
                 } else {
-                    this.sendToDB(diary_);
+                    if( diary_.text && diary_.title) {
+                        this.sendToDB(diary_);
+                    }
                 }
             }
         },
         mounted: function () {
-            this.getPosition(this);
+            this.getPosition();
         }
 
     }

@@ -35,7 +35,7 @@
 
                     </div>
                     <div class="image-wrapper">
-                    <img :src="item.image" />
+                        <img :src="item.image" />
                     </div>
                 </div>
                 <div class="twelve columns bottom-divider">
@@ -49,7 +49,7 @@
             <div v-else>
                 Loading
             </div>
-            <router-link to="/diary"><button>Back</button></router-link>    
+            <router-link to="/diary"><button>Back</button></router-link>
         </div>
     </div>
 </template>
@@ -62,12 +62,12 @@
                 projectId: this.$route.params.projectId,
                 item: null,
                 feelings: [
-                        'mood',
-                        'sentiment_very_dissatisfied',
-                        'sentiment_dissatisfied',
-                        'sentiment_neutral',
-                        'sentiment_satisfied',
-                        'sentiment_very_satisfied'
+                    'mood',
+                    'sentiment_very_dissatisfied',
+                    'sentiment_dissatisfied',
+                    'sentiment_neutral',
+                    'sentiment_satisfied',
+                    'sentiment_very_satisfied'
                 ],
                 feelingsText: [
                     'mood',
@@ -81,14 +81,14 @@
         },
 
         mounted: function () {
-            firebase.auth().signInAnonymously().catch(function(error) {
+            firebase.auth().signInAnonymously().catch((error) => {
                 console.log(error.message);
             }).then(() => {
                 firebase.database().ref('diary').orderByKey().equalTo(this.projectId).on('value', (snapshot) => {
                     snapshot.forEach((childSnapshot) => {
                         var childData = childSnapshot.val();
                         var date = new Date(childData.createdAt);
-                        childData.createdAt = date.getDate() + "." + (date.getMonth()+1) + "."+date.getFullYear();
+                        childData.createdAt = `${date.getDate()}.${(date.getMonth()+1)}.${date.getFullYear()}`;
                         this.item = childData;
                     });
                 });

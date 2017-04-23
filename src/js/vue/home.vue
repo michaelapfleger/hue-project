@@ -226,61 +226,65 @@
         },
 
         methods: {
-            getToday: function (home) {
+            getToday: function () {
                 var today = new Date();
                 var day = today.getDate();
                 var month = today.getMonth()+1;
                 var year = today.getFullYear();
-                home.today = day + "." + month + "." + year;
+                this.today = `${day}.${month}.${year}`;
             },
-            getAnimalGif: function (home) {
-                const rand = home.randomNumber(0,1000);
-                axios.get('http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC&offset=' + rand + '&limit=1')
+            getAnimalGif: function () {
+                const rand = this.randomNumber(0,1000);
+                var _this = this;
+                axios.get(`http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC&offset=${rand}&limit=1`)
                         .then((result) => {
-                            home.gif.animal = result.data.data[0].images.original.url;
+                            _this.gif.animal = result.data.data[0].images.original.url;
                         })
                         .catch((error) => {
                             console.log(error);
                         });
             },
-            getGotGif: function (home,character) {
-                const rand = home.randomNumber(0,100);
-                axios.get('http://api.giphy.com/v1/gifs/search?q=game+of+thrones+' + character.replace(" ", "+") + '&api_key=dc6zaTOxFJmzC&offset=' + rand + '&limit=1')
+            getGotGif: function (character) {
+                const rand = this.randomNumber(0,100);
+                var _this = this;
+                axios.get(`http://api.giphy.com/v1/gifs/search?q=game+of+thrones+${character.replace(" ", "+")}&api_key=dc6zaTOxFJmzC&offset=${rand}&limit=1`)
                         .then((result) => {
-                            home.gif.got = result.data.data[0].images.original.url;
+                            _this.gif.got = result.data.data[0].images.original.url;
                         })
                         .catch((error) => {
                             console.log(error);
                         });
             },
-            getGOT: function (home) {
-                axios.get('https://got-quotes.herokuapp.com/quotes')
+            getGOT: function () {
+                var _this = this;
+                axios.get(`https://got-quotes.herokuapp.com/quotes`)
                         .then((result) => {
-                            home.quote.got = result.data;
-                            home.getGotGif(home,home.quote.got.character);
+                            _this.quote.got = result.data;
+                            _this.getGotGif(_this.quote.got.character);
                         })
                         .catch((error) => {
                             console.log(error);
                         });
             },
-            getChuckNorris: function (home) {
-                axios.get('https://api.chucknorris.io/jokes/random')
+            getChuckNorris: function () {
+                var _this = this;
+                axios.get(`https://api.chucknorris.io/jokes/random`)
                         .then((result) => {
-                            home.quote.chuckNorris = result.data.value;
+                            _this.quote.chuckNorris = result.data.value;
                         })
                         .catch((error) => {
                             console.log(error);
                         });
             },
 
-            getHolidays: function (home) {
+            getHolidays: function () {
                 var hd = new Holidays('AT');
                 var today = new Date();
                 var day = today.getDate();
                 var month = today.getMonth()+1;
                 var year = today.getFullYear();
                 if(hd.getHolidays(year)) {
-                    home.upcomingHolidays = [];
+                    this.upcomingHolidays = [];
                 }
                 var i = 0;
                 for (let value of hd.getHolidays(year)) {
@@ -291,15 +295,15 @@
                     if (holidayDate.getTime() > today.getTime()) {
                         var holiday = {
                             name: value.name,
-                            date: holidayDate.getDate() + "." + (holidayDate.getMonth()+1) + "." + holidayDate.getFullYear()
+                            date: `${holidayDate.getDate()}.${(holidayDate.getMonth()+1)}.${holidayDate.getFullYear()}`
                         };
                         i++;
-                        home.upcomingHolidays.push(holiday);
+                        this.upcomingHolidays.push(holiday);
                     }
                 }
 
                 var h;
-                if(h = hd.isHoliday(new Date(year + '-' + month +'-' + day +' 10:00:00 GMT-0600'))) {
+                if(h = hd.isHoliday(new Date(`${year}-${month}-${day} 10:00:00 GMT-0600`))) {
                     console.log(h);
                     home.isHoliday.check = true;
                     home.holiday.date = day + "." + month + "." + year;
@@ -312,70 +316,74 @@
                 return parseInt(Math.random() * (max - min) + min);
             },
 
-            getWeather: function (home,lat,long) {
-                axios.get('http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=9509e3a3ba8822d0958b1bb71a0df721')
+            getWeather: function (lat,long) {
+                var _this = this;
+                axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=9509e3a3ba8822d0958b1bb71a0df721`)
                         .then((result) => {
-                            home.weather.icon = "http://openweathermap.org/img/w/" + result.data.weather[0].icon + ".png";
-                            home.weather.clouds = result.data.clouds['all'];
-                            home.weather.description = result.data.weather[0].description;
-                            home.weather.location = result.data.name;
-                            home.weather.temp = Math.round((result.data.main['temp'] - 273.15)*100/100.0);
-                            home.weather.min = result.data.main['temp_min']- 273.15;
-                            home.weather.max = result.data.main['temp_max'] - 273.15;
-                            home.weather.pressure = result.data.main['pressure'];
-                            home.weather.humidity = result.data.main['humidity'];
-                            home.weather.wind = result.data.wind.speed;
+                            _this.weather.icon = `http://openweathermap.org/img/w/${result.data.weather[0].icon}.png`;
+                            _this.weather.clouds = result.data.clouds['all'];
+                            _this.weather.description = result.data.weather[0].description;
+                            _this.weather.location = result.data.name;
+                            _this.weather.temp = Math.round((result.data.main['temp'] - 273.15)*100/100.0);
+                            _this.weather.min = result.data.main['temp_min']- 273.15;
+                            _this.weather.max = result.data.main['temp_max'] - 273.15;
+                            _this.weather.pressure = result.data.main['pressure'];
+                            _this.weather.humidity = result.data.main['humidity'];
+                            _this.weather.wind = result.data.wind.speed;
                             var sunrise = new Date(result.data.sys.sunrise*1000);
                             var hours = sunrise.getHours();
                             var minutes = sunrise.getMinutes();
-                            home.weather.sunrise = ((hours < 10) ? "0" + hours : "" +hours )+ ":"+ ((minutes < 10 ) ? "0"+minutes : minutes);
+                            _this.weather.sunrise = ((hours < 10) ? "0" + hours : "" +hours )+ ":"+ ((minutes < 10 ) ? "0"+minutes : minutes);
                             var sunset = new Date(result.data.sys.sunset*1000);
                             hours = sunset.getHours();
                             minutes =  sunset.getMinutes();
-                            home.weather.sunset = ((hours < 10) ? "0" + hours : "" +hours )+ ":"+ ((minutes < 10 ) ? "0"+minutes : minutes);
+                            _this.weather.sunset = ((hours < 10) ? "0" + hours : "" +hours )+ ":"+ ((minutes < 10 ) ? "0"+minutes : minutes);
                         })
                         .catch((error) => {
                             console.log(error);
                         });
             },
-            getSpaceHuman: function (home) {
-                axios.get('http://api.open-notify.org/astros.json')
+            getSpaceHuman:  function() {
+                var _this = this;
+                axios.get(`http://api.open-notify.org/astros.json`)
                         .then((result) => {
-                            home.space.number = result.data.number;
+                            _this.space.number = result.data.number;
                             var humans = [];
                             var index = true;
                             for(var h of result.data.people) {
                                 humans.push({name:h.name,index});
                                 index = !index;
                             }
-                            home.space.humans = humans;
+                            _this.space.humans = humans;
                         })
                         .catch((error) => {
                             console.log(error);
                         });
             },
 
-            getGuardianNews: function (home) {
-                axios.get('https://newsapi.org/v1/articles?source=the-guardian-uk&sortBy=top&apiKey='+home.apiKey)
+            getGuardianNews: function () {
+                var _this = this;
+                axios.get(`https://newsapi.org/v1/articles?source=the-guardian-uk&sortBy=top&apiKey=${_this.apiKey}`)
                         .then((result)=> {
                             var articles = result.data.articles;
-                            var index = home.randomNumber(0,10);
+                            var index = _this.randomNumber(0,10);
                             var article = articles[index];
                             article.description = article.description.length > 100 ? article.description.substr(0,130) + "..." : article.description;
-                            home.news.guardian = article;
+                            _this.news.guardian = article;
                         })
                         .catch((error) => {
                             console.log(error);
                         });
             },
-            getT3nNews: function (home) {
-                axios.get('https://newsapi.org/v1/articles?source=t3n&sortBy=top&apiKey='+home.apiKey)
+            getT3nNews: function () {
+                var _this = this;
+                axios.get(`https://newsapi.org/v1/articles?source=t3n&sortBy=top&apiKey=${_this.apiKey}`)
                         .then((result)=> {
                             var articles = result.data.articles;
-                            var index = home.randomNumber(0,10);
+                            var index = _this.randomNumber(0,10);
                             var article = articles[index];
                             article.description = article.description.length > 100 ? article.description.substr(0,130) + "..." : article.description;
-                            home.news.t3n = article;
+                            _this.news.t3n = article;
                         })
                         .catch((error) => {
                             console.log(error);
@@ -385,22 +393,22 @@
         },
         created: function () {
             console.log("created");
-            var home = this;
+            var _this = this;
 
-            navigator.geolocation.getCurrentPosition(function (position) {
+            navigator.geolocation.getCurrentPosition( (position) => {
                 var lat = position.coords.latitude;
                 var long = position.coords.longitude;
-                home.getWeather(home, lat, long);
+                _this.getWeather(lat, long);
             });
 
-            home.getToday(home);
-            home.getSpaceHuman(home);
-            home.getT3nNews(home);
-            home.getGuardianNews(home);
-            home.getHolidays(home);
-            home.getAnimalGif(home);
-            home.getChuckNorris(home);
-            home.getGOT(home);
+            this.getToday();
+            this.getSpaceHuman();
+            this.getT3nNews();
+            this.getGuardianNews();
+            this.getHolidays();
+            this.getAnimalGif();
+            this.getChuckNorris();
+            this.getGOT();
 
         }
 
