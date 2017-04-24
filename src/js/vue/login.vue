@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="container mt20 login">
         <div class="row panel-body">
-            <div v-if="login" class="login ten columns">
+            <div v-if="$store.state.signedUp || login" class="login ten columns">
                 <h2>Login</h2>
                 <form v-on:submit.prevent="signIn(user)">
                     <div class="form-group">
@@ -76,6 +76,7 @@
                 var _this = this;
                 if (user.email && user.password) {
                     this.$store.dispatch('signIn', {user});
+                    _this.login = true;
                 }
             }
         },

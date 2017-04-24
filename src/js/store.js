@@ -19,6 +19,7 @@ export default {
     state: {
         user: null,
         error: null,
+        signedUp: false,
         router
     },
     mutations: {
@@ -27,6 +28,9 @@ export default {
         },
         setError: function (state, error) {
             state.error = error;
+        },
+        setSignedUp: function (state, value) {
+            state.signedUp = value.signedUp;
         }
     },
     actions: {
@@ -53,7 +57,7 @@ export default {
             firebase.auth().createUserWithEmailAndPassword(payload.user.email, payload.user.password)
                 .then((result) => {
                     context.commit('setError', {error: null});
-                    context.state.router.push({name: 'login'});
+                    context.commit('setSignedUp', {signedUp: true});
                 })
                 .catch((error) => {
                     console.log(error);
