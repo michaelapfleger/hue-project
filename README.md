@@ -1,4 +1,4 @@
-# Diary
+# Vue Diary
 ## Description:
 A web application for storing all relevant information about the current day. You can add text, images, companions, rate your feelings and add a location. On the dashboard there are some news and information about the current day like weather, and some fun stuff.<br>
 
