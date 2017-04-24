@@ -399,12 +399,15 @@
 
 
             if(this.$store.state.user) {
-
-                navigator.geolocation.getCurrentPosition( (position) => {
-                    var lat = position.coords.latitude;
-                    var long = position.coords.longitude;
-                    _this.getWeather(lat, long);
-                });
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        var lat = position.coords.latitude;
+                        var long = position.coords.longitude;
+                        _this.getWeather(lat, long);
+                    }, (error) => {
+                        console.log(error);
+                         _this.getWeather(48.2081740, 16.3738190);
+                    });
 
                 this.getToday();
                 this.getSpaceHuman();
