@@ -21,7 +21,11 @@
 </template>
 <script>
     export default {
-
+        mounted: function () {
+            $("#menu").delegate('li','click', () => {
+              $("#show-menu").prop('checked', false);
+            });
+        }
 
     }
 </script>

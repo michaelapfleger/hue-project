@@ -105,6 +105,9 @@
                         _this.$store.dispatch('updateUserImage', {imageUrl});
                         _this.showImageInput = false;
 
+                        _this.file = null;
+                        _this.image = null;
+
                     });
                 }
             }

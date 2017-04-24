@@ -73,6 +73,6 @@ header {
     display: none;
   }
   input[type=checkbox]:checked ~ #menu {
-    display: block;
+    display: grid;
   }
 }
