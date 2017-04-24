@@ -76,7 +76,6 @@
                 var _this = this;
                 if (user.email && user.password) {
                     this.$store.dispatch('signIn', {user});
-                    this.$router.push({name: 'home'});
                 }
             }
         },

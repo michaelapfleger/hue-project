@@ -3,10 +3,23 @@ import VueRouter from "vue-router";
 import Home from "./vue/home.vue";
 import Login from "./vue/login.vue";
 
+const router = new VueRouter({
+    routes: [{
+        path: '/home',
+        name: 'home',
+        component: Home
+    },
+    {
+        path: '/',
+        name: 'login',
+        component: Login
+    }]
+});
 export default {
     state: {
         user: null,
-        error: null
+        error: null,
+        router
     },
     mutations: {
         setUser: function (state, user) {
@@ -21,8 +34,6 @@ export default {
         signIn: function (context, payload) {
             firebase.auth().signInWithEmailAndPassword(payload.user.email, payload.user.password)
                 .then((result) => {
-                    console.log(result.email);
-                    console.log(result);
                     context.commit('setUser', { user: {
                         email: result.email,
                         name: result.displayName,
@@ -30,6 +41,7 @@ export default {
                         image: result.photoURL
                     }});
                     context.commit('setError', {error: null});
+                    context.state.router.push({name: 'home'});
 
                 })
                 .catch((error) =>{
@@ -40,8 +52,8 @@ export default {
         signUp: function (context, payload) {
             firebase.auth().createUserWithEmailAndPassword(payload.user.email, payload.user.password)
                 .then((result) => {
-                    console.log(result);
-                    context.commit('setError', {error: null})
+                    context.commit('setError', {error: null});
+                    context.state.router.push({name: 'login'});
                 })
                 .catch((error) => {
                     console.log(error);
@@ -51,7 +63,7 @@ export default {
         updateUserImage: function (context,payload) {
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    console.log("payload:",payload);
+                    
                     user.updateProfile({
                         photoURL: payload.imageUrl
                     }).then(() => {
@@ -90,7 +102,7 @@ export default {
                 console.log("signed out");
                 context.commit('setUser', {user: null});
                 context.commit('setError', {error: null});
-                // redirect
+                context.state.router.push({name: 'login'});
             }, (error) => {
                 console.log(error);
             });

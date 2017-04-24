@@ -33,21 +33,24 @@ const router = new VueRouter({
         name: 'logout',
         component: Logout
     },
-        {
-            path: '/diary/:postId/detail',
-            name: 'detail',
-            component: Detail
-        },
-        {
-            path: '/home',
-            name: 'home',
-            component: Home
-        },
-        {
-            path: '/profile',
-            name: 'profile',
-            component: Profile
-        }, { path: '*', redirect: '/' }
+    {
+        path: '/diary/:postId/detail',
+        name: 'detail',
+        component: Detail
+    },
+    {
+        path: '/home',
+        name: 'home',
+        component: Home
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: Profile
+    },
+    {
+        path: '*', redirect: '/'
+    }
     ]
 });
 
